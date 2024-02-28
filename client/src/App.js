@@ -4,15 +4,14 @@ import Login from "./pages/Login";
 import Tasks from "./pages/Tasks";
 
 function App() {
-
   return (
-		<Routes>
-			<Route path="/" element={<Register />} />
-			<Route path="/register" element={<Register />} />
-			<Route path="/login" element={<Login />} />
-			<Route path="/tasks" element={<Tasks />} />
-		</Routes>
-	);
+    <Routes>
+      <Route path="/" element={<Register />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/tasks" element={<Tasks />} />
+    </Routes>
+  );
 }
 
 export default App;

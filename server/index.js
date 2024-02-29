@@ -15,13 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // json is working well
 app.use(cors());
 
-// app.post("/getUser", (req, res) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   const { id } = req.body;
-//   const user = users.get(id);
-//   res.json(user);
-// });
-
 // tasks
 app.get("/tasks", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");

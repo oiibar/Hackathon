@@ -26,4 +26,4 @@ Technologies used in the project:
 
 <h2>💖Like my work?</h2>
 
-Feel free to contact me<p>contact-me-neon.vercel.app</p>
+Feel free to contact me<p><a href="contact-me-neon.vercel.app">contact-me-neon.vercel.app</a></p>

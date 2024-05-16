@@ -14,7 +14,49 @@ Here're some of the project's best features:
 *   Registration
 *   Delete/Create/Update tasks
 
-  
+<h2>🛠️ Installation Steps:</h2>
+
+<p>1. Clone the project</p>
+
+```
+git clone https://github.com/oiibar/Hackathon_Task_List
+```
+
+<p>2. Navigate to the client folder</p>
+
+```
+cd Hackathon_Task_List/client
+```
+
+<p>3. Install client-side packages</p>
+
+```
+npm i
+```
+
+<p>4. Run the client</p>
+
+```
+npm start
+```
+
+<p>5. Navigate to the server folder</p>
+
+```
+cd Hackathon_Task_List/server
+```
+
+<p>6. Install server-side packages</p>
+
+```
+npm i
+```
+
+<p>7. Run the server</p>
+
+```
+npm start
+```
   
 <h2>💻 Built with</h2>
 

@@ -19,7 +19,7 @@ Here're some of the project's best features:
 <p>1. Clone the project</p>
 
 ```
-git clone https://github.com/oiibar/Hackathon_Task_List
+git clone https://github.com/oiibar/Hackathon_Task_List.git
 ```
 
 <p>2. Navigate to the client folder</p>

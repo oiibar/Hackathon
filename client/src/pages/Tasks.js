@@ -34,7 +34,7 @@ const Tasks = () => {
     }
 
     axios
-      .post("http://localhost:8080/create", {
+      .post("https://hackathon-task-list-server.onrender.com/create", {
         usernames,
         task: task.trim(),
         done: false,
@@ -54,7 +54,9 @@ const Tasks = () => {
   // Delete
   const handleDeleteTask = (key) => {
     axios
-      .post("http://localhost:8080/delete", { id: key })
+      .post("https://hackathon-task-list-server.onrender.com/delete", {
+        id: key,
+      })
       .then(() => {
         // Update the state by removing the deleted task
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== key));
@@ -73,7 +75,7 @@ const Tasks = () => {
     taskAuthor
   ) => {
     axios
-      .put("http://localhost:8080/change", {
+      .put("https://hackathon-task-list-server.onrender.com/change", {
         id: taskId,
         usernames: taskUsernames,
         task: taskTask,
@@ -116,7 +118,7 @@ const Tasks = () => {
     }
 
     axios
-      .get("http://localhost:8080/tasks")
+      .get("https://hackathon-task-list-server.onrender.com/tasks")
       .then((response) => {
         const userTasks = response.data.filter(
           (task) => task.usernames === userId

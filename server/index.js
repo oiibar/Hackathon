@@ -13,7 +13,13 @@ const infos = store.collection("info"); // db for info
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // json is working well
-app.use(cors());
+app.use(
+  cors({
+    origin: ["*"],
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 // tasks
 app.get("/tasks", (req, res) => {

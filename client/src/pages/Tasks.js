@@ -34,7 +34,7 @@ const Tasks = () => {
     }
 
     axios
-      .post("https://hackathon-task-list-server.onrender.com/create", {
+      .post("https://hackathon2-jvoq.onrender.com/create", {
         usernames,
         task: task.trim(),
         done: false,

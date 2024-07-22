@@ -4,28 +4,26 @@
 
 <p id="description">This project was build during 2-day hackathon and it is a task list web app with user sign in/sign out</p>
 
-  
-  
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
 
-*   Authentication
-*   Registration
-*   Delete/Create/Update tasks
+- Authentication
+- Registration
+- CRUD operations
 
 <h2>🛠️ Installation Steps:</h2>
 
 <p>1. Clone the project</p>
 
 ```
-git clone https://github.com/oiibar/Hackathon_Task_List.git
+git clone https://github.com/oiibar/Hackathon2.git
 ```
 
 <p>2. Navigate to the client folder</p>
 
 ```
-cd Hackathon_Task_List/client
+cd Hackathon2/client
 ```
 
 <p>3. Install client-side packages</p>
@@ -43,7 +41,7 @@ npm start
 <p>5. Navigate to the server folder</p>
 
 ```
-cd Hackathon_Task_List/server
+cd Hackathon2/server
 ```
 
 <p>6. Install server-side packages</p>
@@ -55,16 +53,23 @@ npm i
 <p>7. Run the server</p>
 
 ```
-npm start
+npm run start
 ```
-  
+
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
 
-*   ReactJS
-*   ExpressJS
-*   CRUD
+- ReactJS
+- ExpressJS
+- CRUD
+
+Here are some screenshots of the project:
+
+<p align="center">
+  <img src="./previews/Auth.png" alt="Auth">
+  <img src="./previews/Main.png" alt="Main">
+</p>
 
 <h2>💖Like my work?</h2>
 

@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["https://hackathon-cli.vercel.app"],
-    credentials: true,
+    origin: "https://hackathon-cli.vercel.app", // Allow your frontend domain
+    credentials: true, // Allow credentials if needed
     optionsSuccessStatus: 200,
   })
 );

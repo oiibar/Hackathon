@@ -14,7 +14,7 @@ const Login = () => {
   const handleLogin = () => {
     setIsNotFound(false);
     axios
-      .post("https://hackathon2-jvoq.onrender.com/login", {
+      .post("https://hackathon-serv.vercel.app/login", {
         username,
         password,
       })

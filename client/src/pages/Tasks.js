@@ -34,7 +34,7 @@ const Tasks = () => {
     }
 
     axios
-      .post("https://hackathon2-jvoq.onrender.com/create", {
+      .post("https://hackathon-serv.vercel.app/create", {
         usernames,
         task: task.trim(),
         done: false,
@@ -54,7 +54,7 @@ const Tasks = () => {
   // Delete
   const handleDeleteTask = (key) => {
     axios
-      .post("https://hackathon2-jvoq.onrender.com/delete", {
+      .post("https://hackathon-serv.vercel.app/delete", {
         id: key,
       })
       .then(() => {
@@ -75,7 +75,7 @@ const Tasks = () => {
     taskAuthor
   ) => {
     axios
-      .put("https://hackathon2-jvoq.onrender.com/change", {
+      .put("https://hackathon-serv.vercel.app/change", {
         id: taskId,
         usernames: taskUsernames,
         task: taskTask,
@@ -118,7 +118,7 @@ const Tasks = () => {
     }
 
     axios
-      .get("https://hackathon2-jvoq.onrender.com/tasks")
+      .get("https://hackathon-serv.vercel.app/tasks")
       .then((response) => {
         const userTasks = response.data.filter(
           (task) => task.usernames === userId

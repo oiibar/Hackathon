@@ -18,7 +18,7 @@ const Register = () => {
     setIsAlreadyExists(false);
     setIsEmpty(false);
     axios
-      .post("https://hackathon2-jvoq.onrender.com/register", {
+      .post("https://hackathon-serv.vercel.app/register", {
         username: username.trim(),
         password: password.trim(),
       })

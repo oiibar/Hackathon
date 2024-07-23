@@ -1,55 +1,41 @@
-import axios from "axios";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "../styles/Login.css";
+import { useNavigate } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
+import AuthLayout from "../components/AuthLayout";
+import Input from "../components/Input";
 
 const Login = () => {
-  // Setting local username and password values from inputs
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isNotFound, setIsNotFound] = useState(false);
-
+  const { isNotFound, login } = useLogin();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setIsNotFound(false);
-    axios
-      .post("https://hackathon-serv.vercel.app/login", {
-        username,
-        password,
-      })
-      .then((response) => {
-        if (response.data === "You probably don't have an account.") {
-          setIsNotFound(true);
-          return;
-        }
-        window.localStorage.setItem("userId", response.data);
-        navigate("../tasks");
-      });
-  };
-
   return (
-    <>
-      <div className="wrapper">
-        <h1>Sign In</h1>
-        <input
-          type="text"
-          required
-          placeholder="username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          required
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={() => handleLogin()}>Login</button>
-        <Link to="/register">Register</Link>
-        {isNotFound && <p>user is not found with such login and password</p>}
-      </div>
-      <img src="background.svg" className="background" alt="background" />
-    </>
+    <AuthLayout
+      title="Sign In"
+      buttonText="Login"
+      onButtonClick={() => login(username, password, navigate)}
+      linkTo="/register"
+      linkText="Register"
+      errorMessage={
+        isNotFound ? "User not found with such login and password" : ""
+      }
+    >
+      <Input
+        type="text"
+        value={username}
+        placeholder="Username"
+        onChange={(e) => setUsername(e.target.value)}
+        required
+      />
+      <Input
+        type="password"
+        value={password}
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+    </AuthLayout>
   );
 };
 

@@ -1,12 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
- font-family: 'Lexend Deca', sans-serif;
+@layer base {
+  body {
+    @apply font-montserrat text-black bg-[#e5e5e5];
+  }
 }
-body {
- margin: 0;
- padding: 0;
- background-color: #E5E5E5;
- display: flex;
- position: relative;
- justify-content: center;
+
+@layer components {
+  .input {
+    @apply text-white bg-[#224957] p-2 rounded-xl border-none outline-none placeholder:text-white placeholder:opacity-80;
+  }
+  @layer components {
+    .button {
+      @apply bg-[#20DF7F] text-[#224957] px-6 py-2 border-none rounded-xl cursor-pointer shadow-[0px_4px_4px_rgba(0,0,0,.3)];
+    }
+  }
+
+  .title {
+    @apply text-5xl font-bold mb-8;
+  }
+  .layout {
+    @apply flex flex-col justify-center items-center min-h-screen p-4;
+  }
+}
+
+@layer utilities {
 }

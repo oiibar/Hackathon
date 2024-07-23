@@ -1,225 +1,123 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import React from "react";
+import useTasks from "../hooks/useTasks";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import { MdDelete } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import "../styles/Tasks.css";
 
 const Tasks = () => {
-  // Setting all necessary states for further management
-  const [tasks, setTasks] = useState([]);
-  const [task, setTask] = useState("");
-
-  const [usernames, setUsernames] = useState("");
-  const [tags, setTags] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [currentDate, setCurrentDate] = useState("");
-  const [author, setAuthor] = useState("");
-  //const [isEmpty, setIsEmpty] = useState(false);
-
   const navigate = useNavigate();
-
-  // LogOut
-  const handleLogOut = () => {
-    window.localStorage.removeItem("userId");
-    navigate("../login");
-  };
-
-  // Create
-  const handleCreateTask = (e) => {
-    const userId = window.localStorage.getItem("userId");
-    setUsernames(userId);
-    if (!usernames || !author || !tags || !task || !deadline) {
-      return;
-    } else {
-      e.preventDefault();
-    }
-
-    axios
-      .post("https://hackathon-serv.vercel.app/create", {
-        usernames,
-        task: task.trim(),
-        done: false,
-        tags: tags.trim(),
-        deadline,
-        author: author.trim(),
-      })
-      .then((response) => {
-        setTask("");
-        setTags("");
-        setDeadline("");
-        setAuthor("");
-      })
-      .catch((e) => console.log(e));
-  };
-
-  // Delete
-  const handleDeleteTask = (key) => {
-    axios
-      .post("https://hackathon-serv.vercel.app/delete", {
-        id: key,
-      })
-      .then(() => {
-        // Update the state by removing the deleted task
-        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== key));
-      })
-      .catch((e) => console.log(e));
-  };
-
-  // isTaskDone
-  const handleCheck = (
-    taskId,
-    taskUsernames,
-    taskTask,
-    taskTags,
-    taskDone,
-    taskDeadline,
-    taskAuthor
-  ) => {
-    axios
-      .put("https://hackathon-serv.vercel.app/change", {
-        id: taskId,
-        usernames: taskUsernames,
-        task: taskTask,
-        tags: taskTags,
-        done: !taskDone,
-        deadline: taskDeadline,
-        author: taskAuthor,
-      })
-      .then(() => {
-        // Update the state with the modified task
-        setTasks((prevTasks) =>
-          prevTasks.map((task) =>
-            task.id === taskId ? { ...task, done: !taskDone } : task
-          )
-        );
-      })
-      .catch((e) => console.log(e));
-  };
-
-  // Date 'yyyy-mm-dd'
-  function formatDate() {
-    var d = new Date(),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
-
-  // Get
-  useEffect(() => {
-    const userId = window.localStorage.getItem("userId");
-
-    if (!userId) {
-      navigate("../login");
-      return;
-    }
-
-    axios
-      .get("https://hackathon-serv.vercel.app/tasks")
-      .then((response) => {
-        const userTasks = response.data.filter(
-          (task) => task.usernames === userId
-        );
-
-        setTasks(userTasks);
-      })
-      .catch((e) => console.log(e));
-
-    setCurrentDate(formatDate());
-  }, [navigate, setCurrentDate]);
+  const {
+    tasks,
+    task,
+    setTask,
+    tags,
+    setTags,
+    deadline,
+    setDeadline,
+    author,
+    setAuthor,
+    currentDate,
+    handleCreateTask,
+    handleDeleteTask,
+    handleCheck,
+  } = useTasks(navigate);
 
   return (
-    <>
-      <div className="wrapper">
-        <h1>Tasks</h1>
-        <button className="btn__create logOut" onClick={() => handleLogOut()}>
-          Log Out
-        </button>
+    <div className="layout">
+      <Button
+        onClick={() => {
+          window.localStorage.removeItem("userId");
+          navigate("../login");
+        }}
+        className="button absolute top-4 right-4"
+      >
+        Log Out
+      </Button>
 
-        <input
+      <h1 className="title">Tasks</h1>
+
+      <div className="flex flex-col gap-2 my-6">
+        <Input
           value={tags}
           placeholder="Tags"
           onChange={(e) => setTags(e.target.value)}
+          className="input mb-4"
         />
-        <input
+        <Input
           value={deadline}
-          type="Date"
+          type="date"
           min={currentDate}
           onChange={(e) => setDeadline(e.target.value)}
+          className="input mb-4"
         />
-        <input
+        <Input
           value={author}
           placeholder="Author"
           onChange={(e) => setAuthor(e.target.value)}
+          className="input mb-4"
         />
         <textarea
           value={task}
           placeholder="Task"
           onChange={(e) => setTask(e.target.value)}
+          className="input p-2 resize-none"
         />
-        <button
-          type="submit"
-          className="btn__create"
-          onClick={(e) => handleCreateTask(e)}
-        >
-          Create Task
-        </button>
-        <br />
-        <br />
-        <br />
-        <br />
-
-        {!tasks.length ? (
-          <p>There are no tasks yet</p>
-        ) : (
-          <div className="cards">
-            {tasks?.map((task) => (
-              <div className="card" key={task.id}>
-                <div>
-                  <ul className={task.done ? "done" : ""}>
-                    <li>{task?.task}</li>
-                    <li>{task?.tags}</li>
-                    <li>{task?.deadline}</li>
-                    <li>{task?.author}</li>
-                  </ul>
-                  <div>
-                    <button
-                      onClick={() => handleDeleteTask(task.id)}
-                      className="btn__small bin"
-                    >
-                      <img className="icons" src="bin.png" alt="delete" />
-                    </button>
-                    <button
-                      onClick={() =>
-                        handleCheck(
-                          task.id,
-                          task.usernames,
-                          task.task,
-                          task.tags,
-                          task.done,
-                          task.deadline,
-                          task.author
-                        )
-                      }
-                      className={
-                        task.done
-                          ? "btn__small checked check"
-                          : "btn__small check"
-                      }
-                    >
-                      <img className="icons" src="check.png" alt="check" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
-    </>
+      <Button onClick={(e) => handleCreateTask(e)} className="button">
+        Create Task
+      </Button>
+
+      {!tasks.length ? (
+        <p className="text-center text-gray-600 my-6">There are no tasks yet</p>
+      ) : (
+        <div className="flex gap-4">
+          {tasks.map((task) => (
+            <div
+              key={task.id}
+              className="border my-6 p-4 rounded-lg shadow-md bg-white"
+            >
+              <ul
+                className={
+                  task.done
+                    ? "list-disc list-inside line-through text-gray-500"
+                    : "list-disc list-inside"
+                }
+              >
+                <li>{task.task}</li>
+                <li>{task.tags}</li>
+                <li>{task.deadline}</li>
+                <li>{task.author}</li>
+              </ul>
+              <div className="flex gap-2 mt-4">
+                <Button
+                  onClick={() => handleDeleteTask(task.id)}
+                  className="button bg-red-600"
+                >
+                  <MdDelete />
+                </Button>
+                <Button
+                  onClick={() =>
+                    handleCheck(task.id, {
+                      usernames: task.usernames,
+                      task: task.task,
+                      tags: task.tags,
+                      done: task.done,
+                      deadline: task.deadline,
+                      author: task.author,
+                    })
+                  }
+                  className="bg-green-500"
+                >
+                  <FaCheck />
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 

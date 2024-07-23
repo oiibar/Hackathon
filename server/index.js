@@ -1,8 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { DataStore } from "notarealdb";
-
 import cors from "cors";
+
 const app = express();
 const port = 5000;
 
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // json is working well
 app.use(
   cors({
-    origin: ["https://hackathon-cli.vercel.app"],
+    origin: "*",
     credentials: true,
     optionsSuccessStatus: 200,
   })

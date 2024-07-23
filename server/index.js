@@ -10,7 +10,13 @@ const port = 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://hackathon-cli.vercel.app"],
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 app.use("/tasks", taskRoutes);
 app.use("/users", userRoutes);

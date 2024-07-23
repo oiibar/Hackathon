@@ -1,7 +1,7 @@
 import cors from "cors";
 
 const corsOptions = {
-  origin: "*",
+  origin: ["https://hackathon-cli.vercel.app"],
   credentials: true,
   optionsSuccessStatus: 200,
 };

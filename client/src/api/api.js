@@ -5,6 +5,7 @@ const BASE_URL = "https://hackathon-serv.vercel.app";
 
 export const api = axios.create({
   baseURL: BASE_URL,
+  withCredentials: true, // Include credentials if necessary
 });
 
 export const loginUser = (username, password) => {

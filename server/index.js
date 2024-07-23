@@ -4,7 +4,7 @@ import { DataStore } from "notarealdb";
 
 import cors from "cors";
 const app = express();
-const port = 8080;
+const port = 5000;
 
 const store = new DataStore("./fake-data");
 const tasks = store.collection("tasks"); // db for tasks
@@ -112,5 +112,7 @@ app.post("/info", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("SERVER STARTED!");
+  console.log(`Server on localhost:${port}`);
 });
+
+export default app;

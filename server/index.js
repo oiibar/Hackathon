@@ -10,10 +10,18 @@ const port = 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(
+// app.use(
+//   cors({
+//     origin: ["https://hackathon-cli.vercel.app"], // Allow your frontend domain
+//     credentials: true, // Allow credentials if needed
+//     optionsSuccessStatus: 200,
+//   })
+// );
+app.options(
+  "*",
   cors({
-    origin: ["https://hackathon-cli.vercel.app"], // Allow your frontend domain
-    credentials: true, // Allow credentials if needed
+    origin: "https://hackathon-cli.vercel.app",
+    credentials: true,
     optionsSuccessStatus: 200,
   })
 );

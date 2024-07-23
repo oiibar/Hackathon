@@ -1,4 +1,3 @@
-// src/api/api.js
 import axios from "axios";
 
 // Base URL for API requests
@@ -9,11 +8,11 @@ export const api = axios.create({
 });
 
 export const loginUser = (username, password) => {
-  return api.post("/login", { username, password });
+  return api.post("/users/login", { username, password });
 };
 
 export const registerUser = (username, password) => {
-  return api.post("/register", { username, password });
+  return api.post("/users/register", { username, password });
 };
 
 export const getTasks = () => {
@@ -21,13 +20,13 @@ export const getTasks = () => {
 };
 
 export const createTask = (taskData) => {
-  return api.post("/create", taskData);
+  return api.post("/tasks/create", taskData);
 };
 
 export const deleteTask = (taskId) => {
-  return api.post("/delete", { id: taskId });
+  return api.post("/tasks/delete", { id: taskId });
 };
 
 export const updateTask = (taskData) => {
-  return api.put("/change", taskData);
+  return api.put("/tasks/change", taskData);
 };

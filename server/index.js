@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // json is working well
 app.use(
   cors({
-    origin: ["https://hackathon2-cli.onrender.com"],
+    origin: ["https://hackathon-cli.vercel.app"],
     credentials: true,
     optionsSuccessStatus: 200,
   })

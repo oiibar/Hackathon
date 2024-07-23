@@ -1,11 +1,10 @@
 import axios from "axios";
 
-// Base URL for API requests
-const BASE_URL = "https://hackathon-serv.vercel.app/api";
+const BASE_URL = "https://hackathon-serv.vercel.app";
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true, // Include credentials if necessary
+  timeout: 5000,
 });
 
 export const loginUser = (username, password) => {

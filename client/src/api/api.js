@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://hackathon-serv.vercel.app";
+const BASE_URL = "https://hackathon-serv.vercel.app/api";
 
 export const api = axios.create({
   baseURL: BASE_URL,

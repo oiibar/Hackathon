@@ -19,9 +19,9 @@ app.use(
 );
 app.options("*", cors());
 
-app.use("/tasks", taskRoutes);
-app.use("/users", userRoutes);
-app.use("/info", infoRoutes);
+app.use("api/tasks", taskRoutes);
+app.use("api/users", userRoutes);
+app.use("api/info", infoRoutes);
 
 app.listen(port, () => {
   console.log(`Server on localhost:${port}`);

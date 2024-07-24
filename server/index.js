@@ -17,6 +17,7 @@ app.use(
     optionsSuccessStatus: 200,
   })
 );
+app.options("*", cors());
 
 app.use("/tasks", taskRoutes);
 app.use("/users", userRoutes);

@@ -7,9 +7,6 @@ import infoRoutes from "./routes/infoRoutes.js";
 
 const app = express();
 const port = 5000;
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(
   cors({
     origin: ["https://hackathon-cli.vercel.app"],
@@ -18,8 +15,11 @@ app.use(
   })
 );
 
-app.use("api/tasks", taskRoutes);
-app.use("api/users", userRoutes);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use("/api/tasks", taskRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server on localhost:${port}`);

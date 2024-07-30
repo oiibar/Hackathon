@@ -20,7 +20,6 @@ app.use(
 
 app.use("api/tasks", taskRoutes);
 app.use("api/users", userRoutes);
-app.use("api/info", infoRoutes);
 
 app.listen(port, () => {
   console.log(`Server on localhost:${port}`);

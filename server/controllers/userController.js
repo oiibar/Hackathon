@@ -4,7 +4,7 @@ export const registerUser = (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://hackathon-cli.vercel.app"
+    "https://hackathon2-beta.vercel.app/"
   );
   const { username, password } = req.body;
   const existingUsers = users.list();
@@ -22,7 +22,7 @@ export const loginUser = (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://hackathon-cli.vercel.app"
+    "https://hackathon2-beta.vercel.app/"
   );
   const { username, password } = req.body;
   const existingUsers = users.list();

@@ -17,7 +17,7 @@ export const registerUser = (req, res) => {
 
 export const loginUser = (req, res) => {
   // res.setHeader("Access-Control-Allow-Credentials", true);
-  // res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   const { username, password } = req.body;
   const existingUsers = users.list();
   for (let user of existingUsers) {

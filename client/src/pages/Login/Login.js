@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useLogin from "../hooks/useLogin";
-import AuthLayout from "../components/AuthLayout";
-import Input from "../components/Input";
+import AuthLayout from "../../components/AuthLayout";
+import Input from "../../components/Input";
+import useLogin from "./useLogin";
 
 const Login = () => {
   const [username, setUsername] = useState("");

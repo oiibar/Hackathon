@@ -1,6 +1,5 @@
-// src/hooks/useTasks.js
 import { useState, useEffect } from "react";
-import { getTasks, createTask, deleteTask, updateTask } from "../api/api";
+import { getTasks, createTask, deleteTask, updateTask } from "../../api/api";
 
 const useTasks = (navigate) => {
   const [tasks, setTasks] = useState([]);

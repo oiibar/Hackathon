@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useRegister from "../hooks/useRegister";
-import AuthLayout from "../components/AuthLayout";
-import Input from "../components/Input";
+import AuthLayout from "../../components/AuthLayout";
+import Input from "../../components/Input";
+import useRegister from "./useRegister";
 
 const Register = () => {
   const [username, setUsername] = useState("");

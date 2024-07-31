@@ -9,11 +9,13 @@ const app = express();
 const port = 5000;
 app.use(
   cors({
-    origin: ["https://hackathon2-beta.vercel.app"],
+    origin: ["http://localhost:3000"],
     credentials: true,
     optionsSuccessStatus: 200,
   })
 );
+
+//https://hackathon2-beta.vercel.ap
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

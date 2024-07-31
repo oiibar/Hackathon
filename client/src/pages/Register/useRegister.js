@@ -1,6 +1,6 @@
 // src/hooks/useRegister.js
 import { useState } from "react";
-import { registerUser } from "../api/api";
+import { registerUser } from "../../api/api";
 
 const useRegister = () => {
   const [isAlreadyExists, setIsAlreadyExists] = useState(false);
@@ -20,9 +20,7 @@ const useRegister = () => {
       }
       window.localStorage.setItem("userId", response.data.id);
       setIsRegistered(true);
-      setTimeout(() => {
-        navigate("../tasks");
-      }, 3000);
+      navigate("../tasks");
     } catch (error) {
       console.error(error);
     }

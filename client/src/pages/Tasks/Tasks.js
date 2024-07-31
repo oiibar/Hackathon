@@ -1,10 +1,10 @@
 import React from "react";
-import useTasks from "../hooks/useTasks";
-import Button from "../components/Button";
-import Input from "../components/Input";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 import { MdDelete } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import useTasks from "./useTasks";
 
 const Tasks = () => {
   const navigate = useNavigate();

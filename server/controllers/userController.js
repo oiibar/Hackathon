@@ -1,11 +1,6 @@
 import { users } from "../models/store.js";
 
 export const registerUser = (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://hackathon2-beta.vercel.app/"
-  );
   const { username, password } = req.body;
   const existingUsers = users.list();
   for (let user of existingUsers) {
@@ -19,11 +14,6 @@ export const registerUser = (req, res) => {
 };
 
 export const loginUser = (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://hackathon2-beta.vercel.app/"
-  );
   const { username, password } = req.body;
   const existingUsers = users.list();
   for (let user of existingUsers) {

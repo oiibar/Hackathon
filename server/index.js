@@ -9,8 +9,7 @@ const app = express();
 app.use(
   cors({
     origin: "https://hackathon2-gold.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "OPTIONS", "PATCH", "DELETE", "POST", "PUT"],
     credentials: true,
     optionsSuccessStatus: 200,
   })

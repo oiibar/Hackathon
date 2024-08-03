@@ -6,7 +6,7 @@ export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "https://hackathon2-gold.vercel.app",
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
     "AAccess-Control-Allow-Credentials": true,
   },

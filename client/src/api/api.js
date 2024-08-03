@@ -4,7 +4,6 @@ const BASE_URL = "https://hackathon2-serv.vercel.app/api";
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "https://hackathon2-gold.vercel.app",

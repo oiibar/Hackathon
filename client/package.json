@@ -1,5 +1,5 @@
 {
-  "proxy": "https://hackathon2-serv.vercel.app",
+  "proxy": "https://hackathon2-serv.vercel.app/api",
   "name": "client",
   "version": "0.1.0",
   "private": true,

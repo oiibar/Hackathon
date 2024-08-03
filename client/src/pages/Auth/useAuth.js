@@ -26,9 +26,6 @@ const useAuth = (initialMode = "login") => {
           toast.error("User not found");
           return;
         }
-        if (!response) {
-          console.log(response, "smth went wrong");
-        }
         toast.success("Login successful");
         window.localStorage.setItem("userId", response.data);
         navigate("/tasks");

@@ -8,7 +8,9 @@ const port = 5000;
 const app = express();
 app.use(
   cors({
-    origin: ["https://hackathon2-gold.vercel.app"],
+    origin: "https://hackathon2-gold.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     optionsSuccessStatus: 200,
   })

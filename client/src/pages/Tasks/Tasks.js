@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useTasks from "./useTasks";
+import { toast } from "react-toastify";
 
 const Tasks = () => {
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ const Tasks = () => {
       <Button
         onClick={() => {
           window.localStorage.removeItem("userId");
-          navigate("../login");
+          navigate("/auth");
+          toast.success("Logout successful");
         }}
         className="button absolute top-4 right-4"
       >

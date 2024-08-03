@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getTasks, createTask, deleteTask, updateTask } from "../../api/api";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const useTasks = (navigate) => {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
-  const [usernames, setUsernames] = useState("");
   const [tags, setTags] = useState("");
   const [deadline, setDeadline] = useState("");
   const [currentDate, setCurrentDate] = useState("");
@@ -15,6 +16,7 @@ const useTasks = (navigate) => {
       const userId = window.localStorage.getItem("userId");
       if (!userId) {
         navigate("../login");
+        toast.error("Please login first");
         return;
       }
       try {
@@ -32,53 +34,59 @@ const useTasks = (navigate) => {
     fetchTasks();
   }, [navigate]);
 
-  const handleCreateTask = async (e) => {
-    e.preventDefault();
-    const userId = window.localStorage.getItem("userId");
-    setUsernames(userId);
-    if (!usernames || !author || !tags || !task || !deadline) {
-      return;
-    }
+  const handleCreateTask = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const userId = window.localStorage.getItem("userId");
+      if (
+        !userId ||
+        !author.trim() ||
+        !tags.trim() ||
+        !task.trim() ||
+        !deadline
+      ) {
+        toast.error("Please fill all fields");
+        return;
+      }
 
-    try {
-      await createTask({
-        usernames,
-        task: task.trim(),
-        done: false,
-        tags: tags.trim(),
-        deadline,
-        author: author.trim(),
-      });
-      setTask("");
-      setTags("");
-      setDeadline("");
-      setAuthor("");
-      setTasks([
-        ...tasks,
-        {
-          usernames,
+      try {
+        const newTask = {
+          usernames: userId,
           task: task.trim(),
           done: false,
           tags: tags.trim(),
           deadline,
           author: author.trim(),
-        },
-      ]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+        };
+        await createTask(newTask);
+        toast.success("Task added successfully");
 
-  const handleDeleteTask = async (taskId) => {
+        // Reset fields
+        setTask("");
+        setTags("");
+        setDeadline("");
+        setAuthor("");
+
+        // Update tasks list
+        setTasks((prevTasks) => [...prevTasks, newTask]);
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to add task");
+      }
+    },
+    [task, tags, deadline, author]
+  );
+
+  const handleDeleteTask = useCallback(async (taskId) => {
     try {
       await deleteTask(taskId);
       setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
-  const handleCheck = async (taskId, taskData) => {
+  const handleCheck = useCallback(async (taskId, taskData) => {
     try {
       await updateTask({ ...taskData, done: !taskData.done, id: taskId });
       setTasks((prevTasks) =>
@@ -89,7 +97,7 @@ const useTasks = (navigate) => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   const formatDate = () => {
     const d = new Date();
